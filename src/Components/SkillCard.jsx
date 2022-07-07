@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const Container=styled.div`
 background-color:${({theme})=>theme.bgLighter};
-height: 350px;
+height: 340px;
 width: 300px;
 margin: 10px;
 border-radius: 20px;
@@ -10,35 +10,37 @@ display: flex;
 flex-direction: column;
 -webkit-filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
 filter:progid:DXImageTransform.Microsoft.Glow(Color=white,Strength=5);
+padding: 10px;
 `;
 const ImageBox=styled.div`
-height: 30%;
+height: 60%;
 `;
 const DescBox=styled.div`
-height: 70%;
-padding: 10px;
+height: 40%;
 `;
 const Image=styled.img`
 width: 100%;
 height: 100%;
-border-top-left-radius: 20px;
-border-top-right-radius: 20px;
+border-radius: 20px;
 object-fit: cover;
 `;
 const Title=styled.h1`
 color: ${({theme})=>theme.text};
+margin-top:5px;
 `;
 const Desc=styled.div`
 color: ${({theme})=>theme.text};
 font-size: 14px;
+margin:10px 0px;
 `;
 const Button=styled.button`
 background-color:#f18736;
 font-weight: 600;
 color: ${({theme})=>theme.text};
-width: 150px;
+width: 100%;
+height: 40px;
 padding: 10px;
-border-radius: 5px;
+border-radius: 20px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -54,8 +56,8 @@ const SkillCard = ({img,title,desc}) => {
       </ImageBox>
       <DescBox>
       <Title>React</Title>
-       <Desc>React is a JavaScript library for building user interfaces. Learn what React is all about on our homepage or in the tutorial. React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a sim.
-
+       <Desc>React is a JavaScript library for building use
+r interfaces.
 </Desc>
        <Button>Read more</Button>
       </DescBox>

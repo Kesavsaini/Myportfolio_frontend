@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
+import ServiceCard from './ServiceCard';
 const Container=styled.div`
 min-height: 100vh;
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
+
 `;
 const Wrapper=styled.div`
 display: flex;
@@ -33,7 +35,12 @@ const Services = () => {
   return (
     <Container>
        <Tittle>SERVICES</Tittle>
-       <Wrapper></Wrapper>
+       <Wrapper>
+        <ServiceCard/>
+        <ServiceCard/>
+        <ServiceCard/>
+        <ServiceCard/>
+       </Wrapper>
     </Container>
   )
 }
