@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 const Container=styled.div`
-background-color: #202020;
+background-color:${({theme})=>theme.bgLighter};
 height: 350px;
 width: 300px;
 margin: 10px;
@@ -26,16 +26,16 @@ border-top-right-radius: 20px;
 object-fit: cover;
 `;
 const Title=styled.h1`
-color: #f18736;
+color: ${({theme})=>theme.text};
 `;
 const Desc=styled.div`
-color: white;
+color: ${({theme})=>theme.text};
 font-size: 14px;
 `;
 const Button=styled.button`
 background-color:#f18736;
 font-weight: 600;
-color: white;
+color: ${({theme})=>theme.text};
 width: 150px;
 padding: 10px;
 border-radius: 5px;

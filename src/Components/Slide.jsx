@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const Container=styled.div`
 height: 90vh;
-background-color: black;
+background-color: ${({theme})=>theme.nav};
 display: flex;
 `;
 const Left=styled.div`
@@ -18,7 +18,7 @@ const Wrapper=styled.div`
 width: 90%;
 `;
 const Title=styled.h1`
-color: white;
+color: ${({theme})=>theme.text};
 font-size: 100px;
 `;
 const Name=styled.span`
@@ -26,14 +26,14 @@ color: #f18736;
 font-size: 100px;
 `;
 const Desc=styled.div`
-color: white;
+color: ${({theme})=>theme.text};
 font-size: 25px;
 margin-top: 10px;
 `;
 const Button=styled.div`
 background-color:#f18736;
 font-weight: 600;
-color: white;
+color: ${({theme})=>theme.text};
 width: 150px;
 padding: 10px;
 border-radius: 5px;

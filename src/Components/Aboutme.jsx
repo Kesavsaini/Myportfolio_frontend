@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 const Container=styled.div`
 height: 100vh;
-background-color:#090909;
+background-color:${({theme})=>theme.bg};
 display: flex;
 `;
 const Left=styled.div`
@@ -31,8 +31,7 @@ const Image=styled.img`
 height: 100%;
 width: 100%;
 object-fit: cover;
-
-
+border-bottom-right-radius:50%;
 `;
 const Title=styled.div`
 color: #f18736;
@@ -42,7 +41,7 @@ const Wrapper=styled.div`
 width: 90%;
 `;
 const Desc=styled.div`
-color: white;
+color: ${({theme})=>theme.text};
 font-size: 18px;
 `;
 const Aboutme = () => {

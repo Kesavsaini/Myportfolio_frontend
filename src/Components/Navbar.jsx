@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from "styled-components"
 const Container=styled.div`
-background-color: black;
-color: white;
+background-color: ${({theme})=>theme.nav};
+color: ${({theme})=>theme.text};
 display: flex;
 justify-content: end;
 padding:5px;
+position: sticky;
+top: 0;
+z-index: 100;
 `
 const Right=styled.div`
 display: flex;

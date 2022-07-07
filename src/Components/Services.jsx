@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import SkillCard from './SkillCard';
+import styled from 'styled-components';
 const Container=styled.div`
 min-height: 100vh;
 padding: 20px;
@@ -30,23 +29,13 @@ margin-bottom: 10px;
 position: sticky;
 top: 90px;
 `;
-const Skills = () => {
+const Services = () => {
   return (
-    <>
-    
     <Container>
-    <Tittle>SKILLS</Tittle>
-    <Wrapper>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-      </Wrapper>
+       <Tittle>SERVICES</Tittle>
+       <Wrapper></Wrapper>
     </Container>
-    </>
   )
 }
 
-export default Skills
+export default Services
