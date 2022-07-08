@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
-import ServiceCard from './ServiceCard';
+import ProjectCard from './ProjectCard';
 const Container=styled.div`
 min-height: 100vh;
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
-margin-bottom: 100px;
+
 `;
 const Wrapper=styled.div`
 display: flex;
@@ -31,18 +31,21 @@ margin-bottom: 10px;
 position: sticky;
 top: 90px;
 `;
-const Services = () => {
+
+const Projects = () => {
   return (
-    <Container>
-       <Tittle>SERVICES</Tittle>
-       <Wrapper>
-        <ServiceCard/>
-        <ServiceCard/>
-        <ServiceCard/>
-        <ServiceCard/>
-       </Wrapper>
-    </Container>
+     <Container>
+        <Tittle>PROJECTS</Tittle>
+        <Wrapper>
+          <ProjectCard/>
+          <ProjectCard/>
+          <ProjectCard/>
+          <ProjectCard/>
+          <ProjectCard/>
+          <ProjectCard/>
+        </Wrapper>
+     </Container>  
   )
 }
 
-export default Services
+export default Projects

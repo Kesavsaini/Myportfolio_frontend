@@ -7,8 +7,7 @@ height: 250px;
 display: flex;
 margin: 5px;
 border-radius: 20px;
--webkit-filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
-filter:progid:DXImageTransform.Microsoft.Glow(Color=white,Strength=5);
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 const Left=styled.div`
 width: 50%;
@@ -58,7 +57,7 @@ color: ${({theme})=>theme.text};
 width: 40%;
 height: 40px;
 padding: 10px;
-border-radius: 10px;
+border-radius: 5px;
 display: flex;
 align-items: center;
 justify-content: center;

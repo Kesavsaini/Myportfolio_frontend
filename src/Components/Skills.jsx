@@ -6,6 +6,7 @@ min-height: 100vh;
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
+margin-bottom: 100px;
 `;
 const Wrapper=styled.div`
 display: flex;
