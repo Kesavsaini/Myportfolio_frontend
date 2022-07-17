@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import styled from 'styled-components'
 import SkillCard from './SkillCard';
+import {client,urlFor} from "../Client.js";
 const Container=styled.div`
 min-height: 100vh;
 padding: 20px;
@@ -11,7 +13,8 @@ margin-bottom: 100px;
 const Wrapper=styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
+padding: 20px;
+justify-content: space-between;
 `;
 const Tittle=styled.div`
 height: fit-content;
@@ -32,18 +35,33 @@ position: sticky;
 top: 90px;
 `;
 const Skills = () => {
+  const [skill,setSkills]=useState([]);
+  useEffect(() => {
+    const Getdata=async()=>{
+    try{
+     const res= await client.fetch(`*[_type == "skills"]`);
+     setSkills(res);
+     console.log(res)
+    }catch(err){
+      console.log(err);
+    }
+    }
+    Getdata();
+  }, []);
   return (
     <>
     
     <Container>
     <Tittle>SKILLS</Tittle>
     <Wrapper>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
-        <SkillCard/>
+      {skill && skill.map((item)=>{
+        
+        return (
+         <SkillCard img={urlFor(item.icon)} title={item.name} desc={item.desc} link={item.link}/>
+        );
+      })
+         
+      }
       </Wrapper>
     </Container>
     </>

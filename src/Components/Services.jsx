@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import ServiceCard from './ServiceCard';
+import {client,urlFor} from "../Client.js";
 const Container=styled.div`
-min-height: 100vh;
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
 margin-bottom: 100px;
 `;
 const Wrapper=styled.div`
+width: 100%;
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
+padding: 20px 40px;
+justify-content: space-between;
 `;
 const Tittle=styled.div`
 height: fit-content;
@@ -32,14 +34,32 @@ position: sticky;
 top: 90px;
 `;
 const Services = () => {
+  const [services,setServices]=useState([]);
+  useEffect(() => {
+    const Getdata=async()=>{
+    try{
+     const res= await client.fetch(`*[_type == "services"]`);
+     setServices(res);
+     console.log(res)
+    }catch(err){
+      console.log(err);
+    }
+    }
+    Getdata();
+  }, []);
   return (
     <Container>
        <Tittle>SERVICES</Tittle>
        <Wrapper>
-        <ServiceCard/>
-        <ServiceCard/>
-        <ServiceCard/>
-        <ServiceCard/>
+        {
+          services && services.map((item)=>{
+            return (
+              <>
+              <ServiceCard data={item}/>
+              </>
+            );
+          })
+        }
        </Wrapper>
     </Container>
   )

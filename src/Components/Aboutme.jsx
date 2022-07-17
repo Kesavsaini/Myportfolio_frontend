@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import {client,urlFor} from "../Client.js";
+
 const Container=styled.div`
 height: 100vh;
 background-color:${({theme})=>theme.bg};
@@ -43,8 +45,23 @@ width: 90%;
 const Desc=styled.div`
 color: ${({theme})=>theme.text};
 font-size: 18px;
+text-align: justify;
 `;
 const Aboutme = () => {
+  const [aboutme, setaboutme] = useState(null);
+  useEffect(() => {
+    const Getdata=async()=>{
+    try{
+     const res= await client.fetch(`*[_type == "abouts"]`);
+     setaboutme(res[0]);
+     console.log(res);
+    }catch(err){
+      console.log(err);
+    }
+    }
+    Getdata();
+  }, []);
+  // ''
   return (
     <Container>
       <Left>

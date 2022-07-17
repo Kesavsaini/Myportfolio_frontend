@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import {urlFor} from "../Client.js";
 const Container=styled.div`
 background-color:${({theme})=>theme.bgLighter};
-height: 350px;
-width: 300px;
-margin: 10px;
+height:fit-content;
+width: 350px;
+margin:10px 16px;
 border-radius: 20px;
 display: flex;
 flex-direction: column;
@@ -12,10 +14,11 @@ box-shadow: rgb(0, 0, 0) 0px 5px 15px;
 padding: 10px;
 `;
 const ImageBox=styled.div`
-height: 60%;
+height: 50%;
 `;
 const DescBox=styled.div`
-height: 40%;
+height: 50%;
+
 `;
 const Image=styled.img`
 width: 100%;
@@ -31,12 +34,15 @@ const Desc=styled.div`
 color: ${({theme})=>theme.text};
 font-size: 14px;
 margin:10px 0px;
+word-spacing: 3px;
+line-height: 25px;
+font-size: 15px;
 `;
 const Button=styled.button`
 background-color:#f18736;
 font-weight: 600;
 color: ${({theme})=>theme.text};
-width: 100%;
+width: 40%;
 height: 40px;
 padding: 10px;
 border-radius: 15px;
@@ -47,24 +53,22 @@ cursor: pointer;
 margin:10px 0px;
 border: none;
 `;
-const Redirect=styled.a`
-text-decoration: none;
-color: ${({theme})=>theme.text};
-`;
-const SkillCard = ({img,title,desc,link}) => {
+const BlogCard = ({data}) => {
   return (
     <Container>
       <ImageBox>
-      <Image src={img}/>
+      <Image src={urlFor(data.mainImage)}/>
       </ImageBox>
       <DescBox>
-      <Title>{title}</Title>
-       <Desc>{desc}
+      <Title>{data.title}</Title>
+       <Desc>{data.desc}
 </Desc>
-       <Button><Redirect href={link} target="_blank">Read more</Redirect></Button>
+<Link to={`/blog/${data.slug.current}`} style={{textDecoration:"none"}}>
+       <Button>Read more</Button>
+       </Link>
       </DescBox>
     </Container>
   )
 }
 
-export default SkillCard
+export default BlogCard

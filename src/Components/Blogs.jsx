@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components';
-import ProjectCard from './ProjectCard';
+import styled from 'styled-components'
+import BlogCard from './Blogcard';
 import {client,urlFor} from "../Client.js";
 const Container=styled.div`
-
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
-
 `;
 const Wrapper=styled.div`
 display: flex;
 flex-wrap: wrap;
-padding: 20px;
-justify-content: space-between;
 `;
 const Tittle=styled.div`
 height: fit-content;
@@ -33,14 +29,14 @@ margin-bottom: 10px;
 position: sticky;
 top: 90px;
 `;
+const Blogs = () => {
+  const [allPostsData, setAllPosts] = useState(null);
 
-const Projects = () => {
-  const [projects,setProjects]=useState([]);
   useEffect(() => {
     const Getdata=async()=>{
     try{
-     const res= await client.fetch(`*[_type == "works"]`);
-     setProjects(res);
+     const res= await client.fetch(`*[_type == "post"]`);
+     setAllPosts(res);
      console.log(res)
     }catch(err){
       console.log(err);
@@ -49,21 +45,22 @@ const Projects = () => {
     Getdata();
   }, []);
   return (
-     <Container>
-        <Tittle>PROJECTS</Tittle>
-        <Wrapper>
-          {
-            projects && projects.map((item)=>{
-              return(
-                <>
-                <ProjectCard data={item}/>
-                </>
-              );
-            })
-          }
-        </Wrapper>
-     </Container>  
+    <>
+    
+    <Container>
+    <Tittle>BLOGS</Tittle>
+    <Wrapper>
+      {
+        allPostsData && allPostsData.map((item)=>{
+            return(
+              <BlogCard data={item}/>
+            );
+        })
+      }
+      </Wrapper>
+    </Container>
+    </>
   )
 }
 
-export default Projects
+export default Blogs

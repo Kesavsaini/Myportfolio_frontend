@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import {client,urlFor} from "../Client.js";
 const Container=styled.div`
 background-color: ${({theme})=>theme.bgLighter};
 width: 500px;
 height: 250px;
 display: flex;
-margin: 5px;
+margin:15px 5px;
 border-radius: 20px;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
@@ -44,7 +45,7 @@ const Lable=styled.div`
 font-size: 14px;
 color: ${({theme})=>theme.text};
 margin: 10px 0px;
-background-color:skyblue;
+background-color:${props=>props.color};
 width: fit-content;
 padding: 3px;
 border-radius: 4px;
@@ -65,20 +66,33 @@ cursor: pointer;
 margin-top:10px;
 border: none;
 `;
-const ServiceCard = () => {
+const Redirect=styled.a`
+text-decoration: none;
+color: ${({theme})=>theme.text};
+`;
+const ServiceCard = ({data}) => {
   return (
     <>
     <Container>
      <Left>
-     <Image src='https://fs.hubspotusercontent00.net/hubfs/6426302/Imported_Blog_Media/263a75529a1752b75d64f9f21fd07c92-3-2.jpg'/>
+     <Image src={urlFor(data.icon)}/>
      </Left>
      <Right>
      <Lables>
-     <Lable>ReactJs</Lable>
+      {
+        data.tags && data.tags.map((item)=>{
+           return(
+            <Lable color={item.color}>{item.label}</Lable>
+           );
+        })
+      }
+     
      </Lables>
-     <Tittle>Front End Web Devlopment</Tittle>
-     <Desc>Lorem ipsum dolor sit amet consectetur Making Projects on Front end devlopment</Desc>
+     <Tittle>{data.name}</Tittle>
+     <Desc>{data.desc}</Desc>
+     <Redirect href={data.link} target="_blank">
      <Button>SEE WORK</Button>
+     </Redirect>
      </Right>
     </Container>
     </>

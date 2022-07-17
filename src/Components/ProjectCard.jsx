@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {urlFor} from "../Client.js";
 const Container=styled.div`
 background-color:${({theme})=>theme.bgLighter};
 height: 370px;
@@ -68,24 +69,35 @@ padding: 3px;
 border-radius: 4px;
 margin-left: 5px;
 `
-const ProjectCard = () => {
+const Redirect=styled.a`
+text-decoration: none;
+color: ${({theme})=>theme.text};
+`;
+const ProjectCard = ({data}) => {
   return (
     <>
     <Container>
       <ImageBox>
-      <Image src='https://ms314006.github.io/static/b7a8f321b0bbc07ca9b9d22a7a505ed5/97b31/React.jpg'/>
+      <Image src={urlFor(data.imgUrl)}/>
       </ImageBox>
       <Lables>
-        <Lable color='Green'>Web D</Lable>
+        {
+         data.tags && data.tags.map((item)=>{
+            return(
+            <Lable color={item.color}>{item.label}</Lable>
+            );
+          })
+        }
+        
       </Lables>
       <DescBox>
-      <Title>React</Title>
-       <Desc>React is a JavaScript library for building use
-r interfaces.
+      <Title>{data.title}</Title>
+       <Desc>{data.description}
 </Desc>
 <Buttons>
-       <Button color='black'>GitHub Repo</Button>
-       <Button color='#f18736'>Link</Button>
+
+       <Button color='black'><Redirect href={data.codelink} target="_blank">GitHub Repo</Redirect></Button>
+       <Button color='#f18736'><Redirect href={data.projectlink} target="_blank">Link</Redirect></Button>
 </Buttons>
       </DescBox>
     </Container>
