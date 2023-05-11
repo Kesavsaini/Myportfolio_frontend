@@ -6,10 +6,13 @@ const Container=styled.div`
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
+margin-bottom: 100px;
 `;
 const Wrapper=styled.div`
+padding: 10px;
 display: flex;
 flex-wrap: wrap;
+justify-content: space-between;
 `;
 const Tittle=styled.div`
 height: fit-content;
@@ -53,7 +56,9 @@ const Blogs = () => {
       {
         allPostsData && allPostsData.map((item)=>{
             return(
+              <>
               <BlogCard data={item}/>
+              </>
             );
         })
       }

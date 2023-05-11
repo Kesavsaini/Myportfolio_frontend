@@ -61,18 +61,24 @@ const Aboutme = () => {
     }
     Getdata();
   }, []);
-  // ''
+  if(!aboutme){
+    return(
+      <>
+      <div>Loading</div>
+      </>
+    )
+  }
   return (
     <Container>
       <Left>
       <ImageBox>
-      <Image src='https://cdn.shopify.com/s/files/1/0045/5104/9304/files/Styling-American-Crew-Phillipe-RGMN_58cb1549-9653-4a1e-bbdc-4fee6c4bec4c.jpg?v=1648568598'/>
+      <Image src={urlFor(aboutme.imgUrl)}/>
       </ImageBox>
       </Left>
       <Right>
       <Wrapper>
       <Title>About me</Title>
-      <Desc>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime expedita totam voluptatibus quo doloribus atque eum porro placeat consequuntur sequi. Libero, natus deleniti. Repellendus dolorem blanditiis fugiat quos placeat consequatur perspiciatis quo hic praesentium nemo sint quibusdam adipisci, aliquid fuga necessitatibus temporibus ea officia magnam nulla perferendis aspernatur porro! Minus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo soluta officiis obcaecati debitis corrupti cum perspiciatis dolorum, rerum ipsam tenetur autem maxime tempore, eius culpa repellendus officia sequi itaque deserunt!</Desc>
+      <Desc>{aboutme.description}</Desc>
       </Wrapper>
       </Right>
     </Container>

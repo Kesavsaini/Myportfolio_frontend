@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Facebook, GitHub, Instagram, Send, Twitter } from "@mui/icons-material";
-
+import emailjs from '@emailjs/browser';
 const Container = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.bg};
@@ -91,31 +91,73 @@ color: white;
 margin: 10px;
 cursor: pointer;
 `;
+const Wrap=styled.div`
+display: flex;
+`
+const SentBox=styled.div`
+background-color: green;
+color:${({theme})=>theme.text};
+padding: 2px;
+width: fit-content;
+border-radius: 10px;
+margin-left: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+const A=styled.a`
+text-decoration: none;
+color:white;
+`;
 const Contact = ({page}) => {
+  const [template,setTemp]=useState({message:"",email:""});
+  const [sent,setSent]=useState(false);
+  const SenEmail=(e)=>{
+    e.preventDefault();
+    emailjs.send('service_bel9gj1', 'template_idjwk6w',template,'QGXJnwPjIxGEAGBd6')
+      .then((result) => {
+          setSent(true);
+      }, (error) => {
+          console.log(error.text);
+      });
+    }
   return (
     <>
       <Container>
         <Tittle>CONTACT</Tittle>
         <Wrapper page={page}>
           <SendBox>
-            <EmailBox type="email" placeholder="Email" />
-            <Text placeholder="Your Messege.." />
-            <Button>
+            <EmailBox type="email" placeholder="Email" onChange={(e)=>setTemp({...template,email:e.target.value})}/>
+            <Text placeholder="Your Messege.." onChange={(e)=>setTemp({...template,message:e.target.value})}/>
+            <Wrap>
+            <Button onClick={SenEmail}>
               <Send style={{ fontSize: "40px" }} />{" "}
             </Button>
+            {sent && 
+               <SentBox>Message sent Sucssesfully</SentBox>
+            }
+            </Wrap>
           </SendBox>
           <Icon page={page}>
             <Socialicon  bc={"#3b5998"}>
+            <A>
               <Facebook style={{ fontSize: "30px" }} />
+            </A>
             </Socialicon>
             <Socialicon bc={"#e95950"}>
+              <A>
               <Instagram style={{ fontSize: "30px" }}/>
+              </A>
             </Socialicon>
             <Socialicon bc={"#55acee"}>
+              <A>
               <Twitter style={{ fontSize: "30px" }}/>
+              </A>
             </Socialicon>
             <Socialicon bc={"#000000"}>
+            <A href="https://github.com/Kesavsaini" target="_blank">
                 <GitHub style={{ fontSize: "30px" }}/>
+            </A>
             </Socialicon>
           </Icon>
         </Wrapper>

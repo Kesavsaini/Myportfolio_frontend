@@ -7,9 +7,10 @@ const Container=styled.div`
 padding: 20px;
 background-color:${({theme})=>theme.bg};
 display: flex;
-
+margin-bottom: 100px;
 `;
 const Wrapper=styled.div`
+width: 100%;
 display: flex;
 flex-wrap: wrap;
 padding: 20px;

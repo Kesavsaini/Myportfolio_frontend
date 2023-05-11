@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import {client,urlFor} from "../Client.js";
 const Container=styled.div`
 height: 90vh;
 background-color: ${({theme})=>theme.nav};
@@ -48,19 +49,44 @@ height: 100%;
 width: 100%;
 object-fit: cover;
 `;
+const Download=styled.a`
+text-decoration: none;
+color:${({theme})=>theme.text};
+`
 const Slide = () => {
+  const [slidedata, setslidedata] = useState(null);
+  useEffect(() => {
+    const Getdata=async()=>{
+    try{
+     const res= await client.fetch(`*[_type == "slide"]`);
+     setslidedata(res[0]);
+     console.log("slide Data-->")
+     console.log(slidedata.description);
+    }catch(err){
+      console.log(err);
+    }
+    }
+    Getdata();
+  }, []);
+  if(!slidedata){
+    return(
+      <>
+      <div>Loading</div>
+      </>
+    )
+  }
   return (
     <>
     <Container>
       <Left>
       <Wrapper>
         <Title>HI I Am <Name>Keshav</Name></Title>
-        <Desc>I am a Student and developer Learning New things and making Projects on them Lorem ipsum dolor sit amet, consectetur</Desc>
-      <Button>Download Resume</Button>
+        <Desc>{slidedata.description}</Desc>
+      <Button><Download href={slidedata.link} download>Download Resume</Download></Button>
         </Wrapper>
       </Left>
       <Right>
-      <Image src='https://cdn2.hubspot.net/hubfs/2759564/laptopguy020620a.png'/>
+      <Image src={urlFor(slidedata.imgUrl)}/>
       </Right>
     </Container>
     </>

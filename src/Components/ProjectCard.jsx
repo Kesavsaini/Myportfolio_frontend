@@ -96,8 +96,8 @@ const ProjectCard = ({data}) => {
 </Desc>
 <Buttons>
 
-       <Button color='black'><Redirect href={data.codelink} target="_blank">GitHub Repo</Redirect></Button>
-       <Button color='#f18736'><Redirect href={data.projectlink} target="_blank">Link</Redirect></Button>
+       <Button color='black'><Redirect href={data.codeLink} target="_blank">GitHub Repo</Redirect></Button>
+       <Button color='#f18736'><Redirect href={data.projectLink} target="_blank">Link</Redirect></Button>
 </Buttons>
       </DescBox>
     </Container>
